@@ -1,5 +1,5 @@
-/* (n>>i) tends to n/2^i
-   (n<<i) tends to n*2^i
+/* (n>>i) tends to n/2^i//right shift
+   (n<<i) tends to n*2^i//left shift
 */
 
 #include<bits/stdc++.h>
