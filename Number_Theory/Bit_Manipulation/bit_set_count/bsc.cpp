@@ -39,6 +39,6 @@ int main()
     int a=9;
     int c=0;
     printBinary(a);
-    cout<<__builtin_popcount(a)<<endl;
+    cout<<__builtin_popcount(a)<<endl;//for long long __builtin_popcountll(a)
     return 0;
 }
