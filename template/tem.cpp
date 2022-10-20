@@ -1,119 +1,181 @@
-#include <bits/stdc++.h> // Include every standard library
+#include<bits/stdc++.h>
+
 using namespace std;
- 
-typedef long long LL;
-typedef pair<int, int> pii;
-typedef pair<LL, LL> pll;
-typedef pair<string, string> pss;
-typedef vector<int> vi;
-typedef vector<vi> vvi;
-typedef vector<pii> vii;
-typedef vector<LL> vl;
-typedef vector<vl> vvl;
- 
-double EPS = 1e-9;
-int INF = 1000000005;
-long long INFF = 1000000000000000005LL;
-double PI = acos(-1);
-int dirx[8] = { -1, 0, 0, 1, -1, -1, 1, 1 };
-int diry[8] = { 0, 1, -1, 0, -1, 1, -1, 1 };
- 
-#ifdef TESTING
-#define DEBUG fprintf(stderr, "====TESTING====\n")
-#define VALUE(x) cerr << "The value of " << #x << " is " << x << endl
-#define debug(...) fprintf(stderr, __VA_ARGS__)
-#else
-#define DEBUG
-#define VALUE(x)
-#define debug(...)
-#endif
- 
-#define FOR(a, b, c) for (int(a) = (b); (a) < (c); ++(a))
-#define FORN(a, b, c) for (int(a) = (b); (a) <= (c); ++(a))
-#define FORD(a, b, c) for (int(a) = (b); (a) >= (c); --(a))
-#define FORSQ(a, b, c) for (int(a) = (b); (a) * (a) <= (c); ++(a))
-#define FORC(a, b, c) for (char(a) = (b); (a) <= (c); ++(a))
-#define FOREACH(a, b) for (auto&(a) : (b))
-#define REP(i, n) FOR(i, 0, n)
-#define REPN(i, n) FORN(i, 1, n)
-#define MAX(a, b) a = max(a, b)
-#define MIN(a, b) a = min(a, b)
-#define SQR(x) ((LL)(x) * (x))
-#define RESET(a, b) memset(a, b, sizeof(a))
-#define fi first
-#define se second
-#define mp make_pair
-#define pb push_back
-#define ALL(v) v.begin(), v.end()
-#define ALLA(arr, sz) arr, arr + sz
-#define SIZE(v) (int)v.size()
-#define SORT(v) sort(ALL(v))
-#define REVERSE(v) reverse(ALL(v))
-#define SORTA(arr, sz) sort(ALLA(arr, sz))
-#define REVERSEA(arr, sz) reverse(ALLA(arr, sz))
-#define PERMUTE next_permutation
-#define TC(t) while (t--)
- 
-inline string IntToString(LL a)
-{
-    char x[100];
-    sprintf(x, "%lld", a);
-    string s = x;
-    return s;
+
+#define ll                   long long int
+#define endl  	             "\n"
+#define pb                   push_back
+#define f                    first
+#define s                    s
+#define arsort(ar,n)         sort(ar,a+n)
+#define dsort(ar,n)          sort(ar,ar+n,greater<>())
+#define varsort(v)           sort(v.begin(), v.end());
+#define vdsort(v)            sort(v.begin(), v.end(),greater<>());
+#define YES                  cout << "YES\n"
+#define NO                   cout << "NO\n"
+#define fast                 ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+#define tc                   int t; cin >> t; while(t--)
+#define all(x)               (x.begin(),x.end())
+#define MAXFACT              500
+const ll mod = 1e9 + 7;
+const int inf = 1e9 + 10;
+const double pi=acos(-1);
+bool sortedAsc(ll arr[],ll n) {
+    for (int i = 1; i < n; i++) {
+        if (arr[i] < arr[i-1])
+            return false;
+    }
+    return true;
 }
- 
-inline LL StringToInt(string a)
-{
-    char x[100];
-    LL res;
-    strcpy(x, a.c_str());
-    sscanf(x, "%lld", &res);
-    return res;
+bool sortedDesc(ll arr[],ll n) {
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > arr[i - 1])
+            return false;
+    }
+    return true;
 }
- 
-inline string GetString(void)
-{
-    char x[1000005];
-    scanf("%s", x);
-    string s = x;
-    return s;
+bool regularBracketSequence(string s) {
+    stack<char> s1;
+    for (int i = 0; i < s.size(); i++) {
+        if (s[i] == '(')
+            s1.push('(');
+        else {
+            if (s1.empty())
+                return false;
+            else
+                s1.pop();
+        }
+    }
+    return s1.empty();
 }
- 
-inline string uppercase(string s)
-{
-    int n = SIZE(s);
-    REP(i, n)
-    if (s[i] >= 'a' && s[i] <= 'z')
-        s[i] = s[i] - 'a' + 'A';
-    return s;
+void primeFactors(ll num) {
+    ll fac = 2;
+    while (num > 1) {
+        if (num % fac == 0) {
+            cout << fac << " ";
+            num /= fac;
+            ll pow = 1;
+            while (num % fac == 0) {
+                num /= fac;
+                pow++;
+            }
+            cout << pow << endl;
+        }
+        else {
+            fac++;
+        }
+    }
 }
- 
-inline string lowercase(string s)
+bool is_perfect_sq(ll d)
 {
-    int n = SIZE(s);
-    REP(i, n)
-    if (s[i] >= 'A' && s[i] <= 'Z')
-        s[i] = s[i] - 'A' + 'a';
-    return s;
+    double temp = d;
+    d = sqrt(d);
+    temp = sqrt(temp);
+    if (temp == d)
+        return true;
+    return false;
 }
- 
-inline void OPEN(string s)
-{
-#ifndef TESTING
-    freopen((s + ".in").c_str(), "r", stdin);
-    freopen((s + ".out").c_str(), "w", stdout);
-#endif
+int count_Ones_In_Bin(ll n) {
+    int cnt = 0;
+    while (n) {
+        cnt += n & 1;
+        n >>= 1;
+    }
+    return cnt;
 }
- 
-// end of Sektor_jr template v2.0.3 (BETA)
- 
-int main()
+ll gcd(ll a,ll b){
+    return __gcd(a,b);
+}
+ll lcm(ll a, ll b)
 {
-    freopen("A.in", "r", stdin);
-    freopen("output.txt", "w", stdout);
- 
-    int a, b;
-    fin >> a >> b;
-    fout << a + b << endl;
+    return (a*b)/(__gcd(a,b));
+}
+bool is_palindrome(string s) {
+    for (int i = 0; i < s.length() / 2; i++) {
+        if (s[i] != s[s.length() - i - 1])
+            return false;
+    }
+    return true;
+}
+bool is_unique(ll x) {
+    int size = log10(x) + 1;
+    set<int> s;
+    while (x > 0) {
+        s.insert(x % 10);
+        x /= 10;
+    }
+    if (s.size() == size)
+        return true;
+    else
+        return false;
+}
+bool is_vowel(char c) {
+    if (c == 'a' || c == 'e' || c == 'i' || c == 'u' || c == 'o')
+        return true;
+    else
+        return false;
+}
+int number_of_divisors_d[1000010];
+ll number_of_divisors(ll n){
+    for(int i=1;i<=1000000;i++){
+        for(int j=i;j<=1000000;j+=i){
+            number_of_divisors_d[j]++;
+        }
+     }
+     return number_of_divisors_d[n];
+}
+bool is_prime(int n)
+{
+    if (n <= 1)
+        return false;
+    if (n <= 3)
+        return true;
+    if (n % 2 == 0 || n % 3 == 0)
+        return false;
+    for (int i = 5; i * i <= n; i = i + 6)
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+    return true;
+}
+int multiply(int x, int res[], int res_size);
+int multiply(int x, int res[], int res_size);
+void factorial(int n)
+{
+    int res[MAXFACT];
+
+    res[0] = 1;
+    int res_size = 1;
+
+    for (int x=2; x<=n; x++)
+    {
+        res_size = multiply(x, res, res_size);
+    }
+    for (int i=res_size-1; i>=0; i--)
+        cout << res[i];
+}
+
+int multiply(int x, int res[], int res_size)//this is for factorial
+{
+    int carry = 0;
+
+    for (int i=0; i<res_size; i++)
+    {
+        int prod = res[i] * x + carry;
+        res[i] = prod % 10;
+        carry  = prod/10;
+    }
+
+    while (carry)
+    {
+        res[res_size] = carry%10;
+        carry = carry/10;
+        res_size++;
+    }
+    return res_size;
+}
+int main(){
+    fast
+    //freopen("input.txt", "r", stdin);
+   // freopen("output.txt", "w", stdout);
     return 0;
 }
