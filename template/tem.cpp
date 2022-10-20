@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-
 #define ll                   long long int
 #define endl  	             "\n"
 #define pb                   push_back
@@ -10,9 +9,9 @@ using namespace std;
 #define arsort(ar,n)         sort(ar,a+n)
 #define dsort(ar,n)          sort(ar,ar+n,greater<>())
 #define varsort(v)           sort(v.begin(), v.end());
-#define vdsort(v)            sort(v.begin(), v.end(),greater<>());
-#define YES                  cout << "YES\n"
-#define NO                   cout << "NO\n"
+#define vdsort(v)            sort(v.begin(), v.end(),greater<>())
+#define YES                  cout<<"YES\n"
+#define NO                   cout<<"NO\n"
 #define fast                 ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define tc                   int t; cin >> t; while(t--)
 #define all(x)               (x.begin(),x.end())
@@ -173,9 +172,13 @@ int multiply(int x, int res[], int res_size)//this is for factorial
     }
     return res_size;
 }
+
 int main(){
     fast
     //freopen("input.txt", "r", stdin);
-   // freopen("output.txt", "w", stdout);
+    // freopen("output.txt", "w", stdout);
+    //cout<<bitset<16>(n)<<endl;//deci_to_binary
+    //cout<<oct<<n<<endl;//deci_to_oct
+    //cout<<hex<<n<<endl;//deci_to_hexa
     return 0;
 }
